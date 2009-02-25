@@ -19,7 +19,7 @@ requires 'Catalyst::Controller::REST';
 requires 'Catalyst::Controller::HTML::FormFu';
 requires 'Catalyst::Plugin::Cache';
 requires 'Cache::Memcached';
-
+requires 'Moose';
 
 catalyst;
 
