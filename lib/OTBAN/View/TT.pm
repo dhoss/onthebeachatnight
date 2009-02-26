@@ -8,7 +8,7 @@ __PACKAGE__->config(
         TEMPLATE_EXTENSION => '.tt2',
         # Set the location for TT files
         INCLUDE_PATH => [
-                OTBAN->path_to( 'root','src' ),
+                OTBAN->path_to( 'root','site' ),
         ],
 );
 
