@@ -1,0 +1,7 @@
+TODO for OTBAN (and some codedright stuff in here as well):
+1. get memcached stuff done
+2. build db helpers 
+   a. user system models/controllers helpers
+   b. KiokuDB model for catalyst?
+3. RESTful webservices for everything
+4. Nested sets for SQL?
