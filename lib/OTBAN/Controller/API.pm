@@ -111,7 +111,7 @@ sub thread_DELETE {
             thread_delete_ok =>, ## deteremine if thread was deleted
         }
     );
-
+}
 
 =head1 AUTHOR
 

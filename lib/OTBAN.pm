@@ -1,3 +1,5 @@
+use Moose ();
+
 package OTBAN;
 
 use strict;
@@ -37,6 +39,7 @@ our $VERSION = '0.01';
 # local deployment.
 
 __PACKAGE__->config( name => 'OTBAN' );
+
 
 # config for Cache::Memcached::libmemcached
 __PACKAGE__->config->{'Plugin::Cache'}{backend} = {

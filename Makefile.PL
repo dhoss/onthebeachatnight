@@ -22,6 +22,7 @@ requires 'Cache::Memcached';
 requires 'Moose';
 requires 'KiokuDB';
 requires 'Catalyst::Model::KiokuDB';
+requires 'KiokuDB::Backend::DBI';
 
 catalyst;
 
