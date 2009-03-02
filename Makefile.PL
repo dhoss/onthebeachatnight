@@ -20,6 +20,8 @@ requires 'Catalyst::Controller::HTML::FormFu';
 requires 'Catalyst::Plugin::Cache';
 requires 'Cache::Memcached';
 requires 'Moose';
+requires 'KiokuDB';
+requires 'Catalyst::Model::KiokuDB';
 
 catalyst;
 
