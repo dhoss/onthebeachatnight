@@ -50,7 +50,7 @@ set up rest stuff for a thread
 
 =cut
 
-sub thread_setup : Chained('/') PathPart('threads') CaptureArgs(1) {
+sub thread_setup : Chained('/') PathPart('threads') CaptureArgs(0) {
     my ($self, $c, $thread) = @_;
     
     ## do checking to see if $thread exists

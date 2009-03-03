@@ -1,5 +1,5 @@
 package OTBAN::Controller::API;
-#use Moose::Role;
+use Moose::Role;
 use base 'Catalyst::Controller';
 
 
