@@ -1,7 +1,7 @@
 package OTBAN::Controller::API::REST;
 use Moose;
 BEGIN { extends 'Catalyst::Controller::REST' };
-use base 'OTBAN::Controller::API';
+use base  'OTBAN::Controller::API';
 
 
 ## thanks lukes! (luke.saunders)

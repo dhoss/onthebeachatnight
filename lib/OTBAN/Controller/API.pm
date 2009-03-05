@@ -1,5 +1,4 @@
 package OTBAN::Controller::API;
-use Moose::Role;
 use base 'Catalyst::Controller';
 
 
@@ -78,7 +77,7 @@ list all items
 sub list : Private {
     my ($self, $c) = @_;
     
-    return "list all items";
+    return $c->stash->{response};
     
 }
 
