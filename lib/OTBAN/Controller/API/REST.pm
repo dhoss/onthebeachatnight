@@ -1,7 +1,6 @@
 package OTBAN::Controller::API::REST;
 use Moose;
-BEGIN { extends 'Catalyst::Controller::REST' };
-use base  'OTBAN::Controller::API';
+BEGIN { extends 'Catalyst::Controller::REST', 'OTBAN::Controller::API::Base' };
 
 
 ## thanks lukes! (luke.saunders)
@@ -40,6 +39,7 @@ just lists all items.
 sub index_GET{
     my ( $self, $c ) = @_;
 
+    $c->log->debug("Reached index_GET");
     $c->forward('list');
 }
 
