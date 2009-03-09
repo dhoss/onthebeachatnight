@@ -40,7 +40,10 @@ sub post : Private {
     
     my $thread = OTBAN::Thread->new( title => $c->req->param('title') );
     my $thread_id = $c->model('KiokuDB')->store($thread);
-    $c->stash->{response} = { id => $c->model('KiokuDB')->lookup($thread_id) };
+    $c->stash->{response} = { 
+        id => $c->model('KiokuDB')
+                  ->lookup($thread_id) 
+    };
 
 }
 

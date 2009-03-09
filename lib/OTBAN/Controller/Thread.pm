@@ -31,7 +31,9 @@ sub index :Path :Args(0) {
     <label for="title">Title:</label><input type="text" name="title" id="title" />
     </form>
     };
+    
     $c->response->body($html);
+    
 }
 
 
