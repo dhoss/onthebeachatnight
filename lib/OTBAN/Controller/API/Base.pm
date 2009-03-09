@@ -1,4 +1,5 @@
 package OTBAN::Controller::API::Base;
+use OTBAN::Thread;
 use base 'Catalyst::Controller';
 
 
@@ -37,7 +38,9 @@ post a new thread
 sub post : Private {
     my ($self, $c) = @_;
     
-    return "Post an item";
+    my $thread = OTBAN::Thread->new( title => $c->req->param('title') );
+    my $thread_id = $c->model('KiokuDB')->store($thread);
+    $c->stash->{response} = { id => $c->model('KiokuDB')->lookup($thread_id) };
 
 }
 
@@ -77,8 +80,9 @@ list all items
 sub list : Private {
     my ($self, $c) = @_;
     
-    $c->log->debug("Reached list");
-    return "Hi!";
+    my $objects = $c->model('KiokuDB')->all_objects();
+    
+    $c->stash->{response} = $objects;
     
 }
 
@@ -92,7 +96,7 @@ sub item : Private {
     my ($self, $c) = @_;
     
     my $id = $c->stash->{thread};
-    $c->model('KiokuDB')->lookup($id);
+    $c->stash->{response} = { id => $c->model('KiokuDB')->lookup($id) };
     
 }
 

@@ -1,16 +1,17 @@
 package OTBAN::Controller::API::REST;
 use Moose;
-BEGIN { extends 'Catalyst::Controller::REST', 'OTBAN::Controller::API::Base' };
+BEGIN { extends 'Catalyst::Controller::REST', 'OTBAN::Controller::API::Base'; };
 
 
 ## thanks lukes! (luke.saunders)
 __PACKAGE__->config(
     'default'   => 'application/json',
+    'convert_blessed' => 1,
 	'stash_key' => 'response',
 	    'map'       => {
 		    'application/x-www-form-urlencoded' => 'JSON',
 			'application/json'                  => 'JSON',
-});
+			'text/html'                         => [ 'View', 'TT' ],
 
 
 =head1 METHODS
