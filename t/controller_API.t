@@ -13,11 +13,7 @@ ok( request('/api')->is_success, 'Request to root API should succeed' );
 
 ## GET: thread
 ok( 
-    request( 
-        HTTP::Request->new( 
-            GET => '/api/thread') 
-        )->is_success, 
-        'Request to thread URI should succeed'
+    request('/api/rest')->is_success, 'Request to thread URI should succeed'
 );
 
 ## POST: thread
@@ -25,7 +21,7 @@ ok(
 ok( 
     request( 
         HTTP::Request->new( 
-            POST => '/api/thread') 
+            POST => '/api/rest') 
         )->is_success, 
         'Request to thread URI should succeed'
 );
