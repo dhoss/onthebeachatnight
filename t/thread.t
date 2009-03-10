@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 12;
 
 BEGIN { use_ok 'OTBAN::Thread' }
 BEGIN { use_ok 'Moose' }
@@ -8,7 +8,7 @@ BEGIN { use_ok 'KiokuDB::Util' }
 
 my $thread = OTBAN::Thread->new( title => 'test' );
 ok( $thread, 'Created a thread okay' );
-
+is( $thread->title, "test", "Thread's title is 'test'");
 my $child = OTBAN::Thread->new( title => 'child' );
 ok( $thread->add_child( $child ), "Added a child");
 is( $thread->children->members, $child, "Child node is a child of this thread");
