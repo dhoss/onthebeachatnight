@@ -54,14 +54,22 @@ sub post : Private {
 
 put/update an item.
 
-this will be used for adding replies.
+this is also used for adding replies.
 
 =cut
 
 sub put : Private {
     my ($self, $c) = @_;
     
-    return "update an item";
+    my $thread = $c->model('KiokuDB')->lookup( 
+        $c->stash->{thread_id} 
+    );
+        
+    $c->model('KiokuDB')->update($thread);
+    
+    $c->stash->{response} = {
+        success => 1    
+    };
 
 }
 

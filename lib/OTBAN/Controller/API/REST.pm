@@ -129,17 +129,5 @@ sub thread_DELETE {
     $c->forward('delete');
 }
 
-=head2 *::TO_JSON
-
-This is to attempt to serialize our KiokuDB stuff
-
-=cut
-
-sub OTBAN::Controller::API::REST::TO_JSON {
-    my ($self, $c) = @_;
-    
-    
-
-}
 
 1;
