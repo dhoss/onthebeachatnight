@@ -31,7 +31,11 @@ sub index : Private {
 
 =head2 post
 
-post a new thread
+post a new thread.
+
+1. create a new node
+2. store it
+3. return the node id to be serialized
 
 =cut
 
@@ -41,15 +45,16 @@ sub post : Private {
     my $thread = OTBAN::Thread->new( title => $c->req->param('title') );
     my $thread_id = $c->model('KiokuDB')->store($thread);
     $c->stash->{response} = { 
-        id => $c->model('KiokuDB')
-                  ->lookup($thread_id) 
+        id => $thread_id
     };
 
 }
 
 =head2 put
 
-put/update an item
+put/update an item.
+
+this will be used for adding replies.
 
 =cut
 
