@@ -1,7 +1,7 @@
 package OTBAN::Thread;
 
 use Moose;
-use KiokuDB::Util qw[set];
+use KiokuDB::Util qw[weak_set];
 has 'node' => (is => 'rw', isa => 'Any');
 
 has 'title' => (
@@ -13,29 +13,31 @@ has 'title' => (
 
 has 'children' => (
 
-    does => "KiokuDB::Set",
-    is   => "rw",
+    does    => "KiokuDB::Set",
+    is      => "rw",
+    default => sub { weak_set() }
 
 );
 
 has 'parent' => (
       is          => 'rw',
       isa         => __PACKAGE__,
-      weak_ref => 1,
+      weaken => 1,
       handles     => {
           parent_node => 'node',
           siblings    => 'children',
-      }
+      },
+      
 );
 
+## thanks perigrin
+sub add_child { 
 
-sub add_child {
+    my ($self, $child) = @_; 
+    $child->parent($self); 
+    $self->children->insert($child); 
 
-    my ( $self, @children ) = shift;
-    my $parent              = $self->parent;
-    my $set                 = set ( @children );
-    $parent->children($set);
-    
 }
+
 
 1;
