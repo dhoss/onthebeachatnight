@@ -27,7 +27,7 @@ sub index :Path :Args(0) {
     ## will be changed
     my $html = qq{
     <h2> post a new thread </h2>
-    <form method="post" action="/threads/request" enctype="application/json">
+    <form method="post" action="/threads/request">
     <label for="title">Title:</label><input type="text" name="title" id="title" />
     </form>
     };
