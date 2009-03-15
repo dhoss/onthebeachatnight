@@ -1,43 +1,50 @@
 package OTBAN::Thread;
-
 use Moose;
-use KiokuDB::Util qw[weak_set];
-has 'node' => (is => 'rw', isa => 'Any');
+use Forest::Tree;
 
-has 'title' => (
-
-    isa => "Str",
-    is  => "rw",
-
+has tree => (
+    isa => 'Forest::Tree',
+    is => 'ro',
+    lazy_build => 1,
+    handles => {
+        message_count      => 'child_count',
+        get_message_number => 'get_child_at' 
+    }
 );
 
-has 'children' => (
-
-    does    => "KiokuDB::Set",
-    is      => "rw",
-    default => sub { weak_set() }
-
+has message => (
+    isa => 'OTBAN::Message',
+    is  => 'rw',
 );
 
-has 'parent' => (
-      is          => 'rw',
-      isa         => __PACKAGE__,
-      weaken => 1,
-      handles     => {
-          parent_node => 'node',
-          siblings    => 'children',
-      },
-      
-);
+=head2 add_message
 
-## thanks perigrin
-sub add_child { 
+add a message to the tree. 
+$message is the Message object
 
-    my ($self, $child) = @_; 
-    $child->parent($self); 
-    $self->children->insert($child); 
+=cut
 
+sub add_message {
+    my ($self, $message) = @_;
+    $self->tree->add_child(
+        Forest::Tree->new( 
+            node => $message
+        )
+    );
+}
+
+sub print {
+    my $self = shift;
+    $self->tree->traverse( sub { print $_->content });
 }
 
 
+## since lazy_build => 1
+sub _build_tree { 
+
+    Forest::Tree->new( node => 'Root' ); 
+
+}
+
 1;
+
