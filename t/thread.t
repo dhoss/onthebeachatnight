@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 14;
+use Test::More tests => 15;
 
 ## make sure we can use everything
 BEGIN { use_ok 'OTBAN::Thread' }
@@ -28,13 +28,15 @@ ok( $thread->add_message( $child), "Added a child");
 is( $thread->tree->child_count, 1, "Thread has one child" );
 #is( $thread->tree->get_child_at(0), $child->tree, "Child node is a child of this thread");
 is( $thread->tree->child_count, 1, "One child");
-is( $child->tree->parent, $thread->tree, "Root node is parent");
-is( $child->tree->siblings->size, 1, "One sibling");
+#ok( $thread->get_child_at(0)->is_child_of(tree), "Root node is parent");
 
 ## add a child to $child
 my $message3 = OTBAN::Message->new( title => 'child2', content=>'blargh' );
 my $child2 = OTBAN::Thread->new( message => $message3 );
-ok($thread->tree->get_child_at(0)->add_message($child2), "Child added to child2");
-is($child->tree->child_count, 2, "Child has Two siblings");
+## need to make this more purdy
+ok($thread->tree->get_child_at(0)->add_child(Forest::Tree->new(node=>$child2)), "Child added to child2");
+is($thread->tree->get_child_at(0)->child_count, 1, "Child has 1 child");
+
+## let's traverse our tree
 
 

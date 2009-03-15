@@ -46,5 +46,16 @@ sub _build_tree {
 
 }
 
+sub is_child_of {
+    my ($self, $parent) = @_;
+    warn $parent;
+    return 1 if $self->tree->parent == $parent;
+
+}
+
+sub is_parent_of {
+
+}
+
 1;
 
